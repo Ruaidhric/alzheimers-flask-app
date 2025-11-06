@@ -1,7 +1,7 @@
 # Ruaidhrí
 # Creating the flask app to be hosted which will communicate with the keras model
 
-import tensorflow.lite as tflite
+import tflite_runtime.interpreter as tflite
 from flask import Flask, request, jsonify
 import pandas as pd
 import numpy as np
