@@ -9,3 +9,6 @@ Flask App/__pycache__/
 Flask App/*.pyc
 # Ignore environment files
 Flask App/.env
+# Ignore old keras file and conversion
+Flask App/alzheimers_model.keras
+Flask App/convert_lite.py
