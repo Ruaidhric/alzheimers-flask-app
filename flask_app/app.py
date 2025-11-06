@@ -4,6 +4,9 @@
 from keras.models import load_model
 from flask import Flask, request, jsonify
 import pandas as pd
+import os
+
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "Models", "alzheimers_model.keras")
 
 FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level", "Smoking Status",
             "Alcohol Consumption", "Diabetes", "Hypertension", "Cholesterol Level", "Family History of Alzheimer’s",
@@ -12,7 +15,7 @@ FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level"
             "Income Level", "Stress Levels", "Urban vs Rural Living"]
 
 app = Flask(__name__)
-model = load_model("alzheimers_model.keras")
+model = load_model(MODEL_PATH)
 
 
 @app.route("/")
