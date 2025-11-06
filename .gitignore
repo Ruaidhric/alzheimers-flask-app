@@ -1,14 +1,14 @@
 # Ignore virtual environments
-Flask App/venv/
-Flask App/.venv/
+flask_app/venv/
+flask_app/.venv/
 # Ignore IDE settings
 .idea
-Flask App/.idea/
+flask_app/.idea/
 # Ignore python cache files
-Flask App/__pycache__/
-Flask App/*.pyc
+flask_app/__pycache__/
+flask_app/*.pyc
 # Ignore environment files
-Flask App/.env
+flask_app/.env
 # Ignore old keras file and conversion
-Flask App/Models/original_model.keras
-Flask App/convert_lite.py
+flask_app/Models/original_model.keras
+flask_app/convert_lite.py
