@@ -16,7 +16,7 @@ FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level"
             "Income Level", "Stress Levels", "Urban vs Rural Living"]
 
 app = Flask(__name__)
-interpreter = tflite.Interpreter(model_path=MODEL_PATH)
+interpreter = tflite.Interpreter(model_path=MODEL_PATH, experimental_delegates=[])
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
