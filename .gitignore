@@ -10,5 +10,5 @@ Flask App/*.pyc
 # Ignore environment files
 Flask App/.env
 # Ignore old keras file and conversion
-Flask App/Models/tensorflow_model.keras
+Flask App/Models/original_model.keras
 Flask App/convert_lite.py

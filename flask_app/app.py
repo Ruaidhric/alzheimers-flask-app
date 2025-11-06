@@ -5,6 +5,9 @@ import tflite_runtime.interpreter as tflite
 from flask import Flask, request, jsonify
 import pandas as pd
 import numpy as np
+import os
+
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "Models", "alzheimers_model.tflite")
 
 FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level", "Smoking Status",
             "Alcohol Consumption", "Diabetes", "Hypertension", "Cholesterol Level", "Family History of Alzheimer’s",
@@ -13,7 +16,7 @@ FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level"
             "Income Level", "Stress Levels", "Urban vs Rural Living"]
 
 app = Flask(__name__)
-interpreter = tflite.Interpreter("Models/alzheimers_model.tflite")
+interpreter = tflite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
