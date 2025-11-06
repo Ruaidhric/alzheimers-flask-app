@@ -1,0 +1,11 @@
+# Ignore virtual environments
+Flask App/venv/
+Flask App/.venv/
+# Ignore IDE settings
+.idea
+Flask App/.idea/
+# Ignore python cache files
+Flask App/__pycache__/
+Flask App/*.pyc
+# Ignore environment files
+Flask App/.env
