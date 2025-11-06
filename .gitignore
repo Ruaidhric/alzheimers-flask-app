@@ -9,6 +9,3 @@ flask_app/__pycache__/
 flask_app/*.pyc
 # Ignore environment files
 flask_app/.env
-# Ignore old keras file and conversion
-flask_app/Models/original_model.keras
-flask_app/convert_lite.py

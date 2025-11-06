@@ -1,13 +1,9 @@
 # Ruaidhrí
 # Creating the flask app to be hosted which will communicate with the keras model
 
-import tflite_runtime.interpreter as tflite
+from keras.models import load_model
 from flask import Flask, request, jsonify
 import pandas as pd
-import numpy as np
-import os
-
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "Models", "alzheimers_model.tflite")
 
 FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level", "Smoking Status",
             "Alcohol Consumption", "Diabetes", "Hypertension", "Cholesterol Level", "Family History of Alzheimer’s",
@@ -16,11 +12,7 @@ FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level"
             "Income Level", "Stress Levels", "Urban vs Rural Living"]
 
 app = Flask(__name__)
-interpreter = tflite.Interpreter(model_path=MODEL_PATH, experimental_delegates=None)
-interpreter.allocate_tensors()
-
-input_details = interpreter.get_input_details()
-output_details = interpreter.get_output_details()
+model = load_model("alzheimers_model.keras")
 
 
 @app.route("/")
@@ -35,13 +27,9 @@ def submit_data():
         data_values = user_data["data"]  # Will get the actual numerical values that were sent
         data_dictionary = dict(zip(FEATURES, data_values))  # Converts it to dictionary, so it can be made a DataFrame
         testing_data = pd.DataFrame([data_dictionary])  # Converts it to a DataFrame so that the model can use it
-        input_data = np.array(testing_data, dtype=np.float32)
+        prediction = float(model.predict(testing_data)[0][0])  # Converts numpy float32 value to regular float to return
 
-        interpreter.set_tensor(input_details[0]['index'], input_data)
-        interpreter.invoke()
-        prediction = interpreter.get_tensor(output_details[0]['index'])[0][0]
-
-        return jsonify({"alzheimers_risk": float(prediction)}), 200  # 200 indicates successful request
+        return jsonify({"alzheimers_risk": prediction}), 200  # 200 indicates successful request
     except Exception as e:
         return jsonify({"error": str(e)}), 400  # 400 indicates a bad request
 
