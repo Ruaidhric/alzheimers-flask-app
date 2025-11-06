@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import os
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "Models", "alzheimers_model.keras")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "alzheimers_model.keras")
 
 FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level", "Smoking Status",
             "Alcohol Consumption", "Diabetes", "Hypertension", "Cholesterol Level", "Family History of Alzheimer’s",
