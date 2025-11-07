@@ -15,7 +15,6 @@ FEATURES = ["Age", "Gender", "Education Level", "BMI", "Physical Activity Level"
             "Income Level", "Stress Levels", "Urban vs Rural Living"]
 
 app = Flask(__name__)
-model = load_model(MODEL_PATH)
 
 
 @app.route("/")
@@ -26,6 +25,7 @@ def status():
 @app.route("/submit", methods=["POST"])
 def submit_data():
     try:
+        model = load_model(MODEL_PATH)  # Loads in the keras model
         user_data = request.get_json()  # Retrieves the request that was made
         data_values = user_data["data"]  # Will get the actual numerical values that were sent
         data_dictionary = dict(zip(FEATURES, data_values))  # Converts it to dictionary, so it can be made a DataFrame
