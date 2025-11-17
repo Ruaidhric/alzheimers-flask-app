@@ -60,7 +60,7 @@ def submit_speech():
             max_tokens=5  # Likely won't return more than 5 tokens anyway, but keep this to be safe
         )
 
-        response_content = response.choices[0].message["content"]
+        response_content = response.choices[0].message.content
 
         if "pattern_a" in response_content.strip().lower():
             alzheimers_risk = "Healthy"
